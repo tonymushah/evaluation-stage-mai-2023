@@ -6,13 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-diesel = { version = "2.1.0", features = ["postgres"] }
+diesel = { version = "2.1.0", features = ["postgres", "r2d2"] }
 dotenvy = "0.15"
 actix-web = "4"
 async-graphql = "7"
 uuid = "1"
 dsync = { version = "0", default-features = false }
 jwt = "0.16.0"
+serde = { version = "1.0.201", features = ["derive"] }
 
 [[bin]]
 name = "dsync"
