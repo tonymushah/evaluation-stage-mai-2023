@@ -1,0 +1,25 @@
+{
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "[svelte]": {
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {
+        "editor.maxTokenizationLineLength": 2500,
+        "editor.formatOnSave": true
+    },
+    "[toml]": {
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.formatOnSave": true
+    }
+}
