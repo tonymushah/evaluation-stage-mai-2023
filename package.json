@@ -1,43 +1,44 @@
 {
-	"name": "evaluation-stage-mai-2023",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "npm run test:integration && npm run test:unit",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint .",
-		"test:integration": "playwright test",
-		"test:unit": "vitest"
-	},
-	"devDependencies": {
-		"@graphql-codegen/cli": "^5.0.2",
-		"@graphql-codegen/client-preset": "^4.2.5",
-		"@melt-ui/pp": "^0.3.2",
-		"@melt-ui/svelte": "^0.79.1",
-		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"@types/eslint": "^8.56.0",
-		"@typescript-eslint/eslint-plugin": "^7.0.0",
-		"@typescript-eslint/parser": "^7.0.0",
-		"eslint": "^8.56.0",
-		"eslint-plugin-svelte": "^2.35.1",
-		"graphql": "^16.8.1",
-		"scss": "^0.2.4",
-		"svelte": "^4.2.7",
-		"svelte-check": "^3.6.0",
-		"tslib": "^2.4.1",
-		"typescript": "^5.4.5",
-		"vite": "^5.0.3",
-		"vitest": "^1.2.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@urql/svelte": "^4.2.0"
-	}
+  "name": "evaluation-stage-mai-2023",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "npm run test:integration && npm run test:unit",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest",
+    "diesel": "cd rust-backend && diesel"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.5",
+    "@melt-ui/pp": "^0.3.2",
+    "@melt-ui/svelte": "^0.79.1",
+    "@playwright/test": "^1.28.1",
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@types/eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "graphql": "^16.8.1",
+    "scss": "^0.2.4",
+    "svelte": "^4.2.7",
+    "svelte-check": "^3.6.0",
+    "tslib": "^2.4.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.0.3",
+    "vitest": "^1.2.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@urql/svelte": "^4.2.0"
+  }
 }
