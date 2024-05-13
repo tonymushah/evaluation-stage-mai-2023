@@ -1,6 +1,17 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    chantier (id_chantier) {
+        id_chantier -> Uuid,
+        #[max_length = 25]
+        client -> Varchar,
+        type_chantier_id -> Uuid,
+        type_finition_id -> Uuid,
+        date_debut -> Nullable<Date>,
+    }
+}
+
+diesel::table! {
     clients (telephone) {
         #[max_length = 25]
         telephone -> Varchar,
@@ -23,6 +34,7 @@ diesel::table! {
         designation -> Text,
         prix -> Numeric,
         duree -> Numeric,
+        is_standard -> Nullable<Bool>,
     }
 }
 
@@ -51,11 +63,15 @@ diesel::table! {
     }
 }
 
+diesel::joinable!(chantier -> clients (client));
+diesel::joinable!(chantier -> finition (type_finition_id));
+diesel::joinable!(chantier -> type_chantier (type_chantier_id));
 diesel::joinable!(devis -> materiels (materiel_id));
 diesel::joinable!(devis -> type_chantier (type_chantier_id));
 diesel::joinable!(materiels -> unite (unite_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
+    chantier,
     clients,
     devis,
     finition,
