@@ -43,7 +43,7 @@ diesel::table! {
         #[max_length = 25]
         code -> Varchar,
         designation -> Text,
-        prix_unitaire -> Nullable<Numeric>,
+        prix_unitaire -> Numeric,
         unite_id -> Uuid,
     }
 }

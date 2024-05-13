@@ -3,6 +3,7 @@ pub mod graphql;
 pub mod models;
 pub mod reset;
 pub mod schema;
+pub mod views;
 
 pub type Result<T, E = crate::error::Error> = std::result::Result<T, E>;
 
