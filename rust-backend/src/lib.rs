@@ -1,7 +1,10 @@
 pub mod error;
 pub mod graphql;
 pub mod models;
+pub mod reset;
 pub mod schema;
+
+pub type Result<T, E = crate::error::Error> = std::result::Result<T, E>;
 
 use std::env;
 
@@ -11,7 +14,7 @@ use diesel::{
     PgConnection,
 };
 use dotenvy::dotenv;
-use graphql::frontoffice::FrontOfficeSchema;
+use graphql::{admin::AdminSchema, frontoffice::FrontOfficeSchema};
 
 // set an alias, so we don't have to keep writing out this long type
 pub type DbPool = Pool<ConnectionManager<PgConnection>>;
@@ -31,6 +34,7 @@ pub fn etablish_connection() -> DbPool {
 pub struct ServerState {
     pub db: DbPool,
     pub front_office: FrontOfficeSchema,
+    pub admin: AdminSchema,
 }
 
 impl Default for ServerState {
@@ -38,6 +42,7 @@ impl Default for ServerState {
         Self {
             db: etablish_connection(),
             front_office: Default::default(),
+            admin: Default::default(),
         }
     }
 }

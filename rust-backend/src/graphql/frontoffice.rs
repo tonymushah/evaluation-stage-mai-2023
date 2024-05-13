@@ -44,7 +44,7 @@ pub fn new_front_office_schema() -> FrontOfficeSchema {
 #[post("/front-office")]
 pub async fn front_office(
     state: web::Data<ServerState>,
-    req: HttpRequest,
+    _req: HttpRequest,
     gql_request: GraphQLRequest,
 ) -> GraphQLResponse {
     let mut request = gql_request.into_inner();
