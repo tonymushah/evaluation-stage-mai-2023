@@ -10,3 +10,18 @@ table! {
         unite -> Text
     }
 }
+
+table! {
+    v_devis_materiel (id_devis, unite_id, materiel_id) {
+        id_devis -> Uuid,
+        type_chantier -> Uuid,
+        #[max_length = 25]
+        materiel_id -> Varchar,
+        materiel -> Text,
+        quantite -> Numeric,
+        prix_unitaire -> Numeric,
+        unite -> Text,
+        unite_id -> Uuid,
+        prix_total -> Numeric
+    }
+}
