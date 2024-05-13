@@ -22,5 +22,14 @@ async-graphql-actix-web = "7.0.5"
 name = "dsync"
 path = "bin/dsync.rs"
 
+[[bin]]
+name = "front_office"
+path = "bin/front_office.rs"
+
+[[bin]]
+name = "admin"
+path = "bin/admin.rs"
+
+
 [alias]
 dsync = "run --bin dsync"
