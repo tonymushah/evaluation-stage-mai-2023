@@ -1,16 +1,16 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "./src/schemas/frontOffice.graphqls",
+  schema: "./src/schemas/admin.graphqls",
   documents: [
-    "./src/lib/client/**/*.svelte",
-    "src/lib/client/**/*.ts",
-    "src/routes/client/**/*.svelte",
-    "src/routes/client/**/*.ts",
+    "./src/lib/admin/**/*.svelte",
+    "src/lib/admin/**/*.ts",
+    "src/routes/admin/**/*.svelte",
+    "src/routes/admin/**/*.ts",
   ],
   ignoreNoDocuments: true, // for better experience with the watcher
   generates: {
-    "./src/lib/client/gql/": {
+    "./src/lib/admin/gql/": {
       preset: "client",
       config: {
         useTypeImports: true,

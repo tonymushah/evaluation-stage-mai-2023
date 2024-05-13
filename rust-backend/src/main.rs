@@ -10,10 +10,14 @@ use rust_backend::{
     ServerState,
 };
 
+use std::env;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let state = ServerState::default();
-    println!("Server started at http://127.0.0.1:1354");
+    let port: u16 = env::var("BACKEND_PORT").unwrap().parse().unwrap();
+    let adress = env::var("BACKEND_HOST").unwrap();
+    println!("Server started at http://{adress}:{port}");
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(state.clone()))
@@ -23,7 +27,7 @@ async fn main() -> std::io::Result<()> {
             .service(admin_graphiql)
             .service(admin_reset)
     })
-    .bind(("127.0.0.1", 1354))?
+    .bind((adress, port))?
     .run()
     .await
 }

@@ -29,7 +29,3 @@ path = "bin/front_office.rs"
 [[bin]]
 name = "admin"
 path = "bin/admin.rs"
-
-
-[alias]
-dsync = "run --bin dsync"
