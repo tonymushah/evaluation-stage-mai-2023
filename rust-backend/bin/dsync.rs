@@ -1,5 +1,5 @@
-use dsync::{GenerationConfig, TableOptions};
-use std::{collections::HashMap, path::PathBuf};
+use dsync::GenerationConfig;
+use std::path::PathBuf;
 
 pub fn main() {
     let dir = env!("CARGO_MANIFEST_DIR");
