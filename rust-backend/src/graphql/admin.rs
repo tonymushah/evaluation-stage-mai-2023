@@ -4,7 +4,7 @@ pub mod query;
 use std::ops::{Deref, DerefMut};
 
 use actix_web::{get, post, web, HttpRequest, HttpResponse};
-use async_graphql::{http::GraphiQLSource, EmptyMutation, EmptySubscription, Schema};
+use async_graphql::{http::GraphiQLSource, EmptySubscription, Schema};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 
 use crate::{reset::reset_db, ServerState};
