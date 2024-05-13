@@ -27,6 +27,14 @@ diesel::table! {
 }
 
 diesel::table! {
+    type_chantier (id_type_chantier) {
+        id_type_chantier -> Uuid,
+        nom -> Text,
+        description -> Text,
+    }
+}
+
+diesel::table! {
     unite (id_unite) {
         id_unite -> Uuid,
         designation -> Text,
@@ -39,5 +47,6 @@ diesel::allow_tables_to_appear_in_same_query!(
     clients,
     finition,
     materiels,
+    type_chantier,
     unite,
 );
