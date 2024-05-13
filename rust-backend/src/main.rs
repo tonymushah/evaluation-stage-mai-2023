@@ -1,6 +1,12 @@
-use actix_web::{web, App, HttpServer};
+use actix_web::{
+    web::{self},
+    App, HttpServer,
+};
 use rust_backend::{
-    graphql::frontoffice::{front_office, front_office_graphiql},
+    graphql::{
+        admin::{admin, admin_graphiql, admin_reset},
+        frontoffice::{front_office, front_office_graphiql},
+    },
     ServerState,
 };
 
@@ -13,6 +19,9 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(state.clone()))
             .service(front_office)
             .service(front_office_graphiql)
+            .service(admin)
+            .service(admin_graphiql)
+            .service(admin_reset)
     })
     .bind(("127.0.0.1", 1354))?
     .run()
