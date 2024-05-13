@@ -10,3 +10,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /target
 .~lock.Timesheet-evaluation.xlsx#
+
+*storybook.log
