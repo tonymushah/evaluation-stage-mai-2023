@@ -10,9 +10,17 @@ pub fn main() {
         GenerationConfig {
             table_options: Default::default(),
             default_table_options: Default::default(),
-            connection_type: String::from("diesel::r2d2::PooledConnection<diesel::r2d2::ConnectionManager<diesel::pg::PgConnection>>"),
-            schema_path: PathBuf::from_iter([dir, "src/schema.rs"]).to_str().unwrap().into(),
-            model_path: PathBuf::from_iter([dir, "src/models"]).to_str().unwrap().into(),
+            connection_type: String::from(
+                "diesel::r2d2::Pool<diesel::r2d2::ConnectionManager<diesel::pg::PgConnection>>",
+            ),
+            schema_path: PathBuf::from_iter([dir, "src/schema.rs"])
+                .to_str()
+                .unwrap()
+                .into(),
+            model_path: PathBuf::from_iter([dir, "src/models"])
+                .to_str()
+                .unwrap()
+                .into(),
         },
     );
 }

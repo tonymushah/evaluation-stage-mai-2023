@@ -14,6 +14,9 @@ uuid = "1"
 dsync = { version = "0", default-features = false }
 jwt = "0.16.0"
 serde = { version = "1.0.201", features = ["derive"] }
+anyhow = "1.0.83"
+thiserror = "1.0.60"
+async-graphql-actix-web = "7.0.5"
 
 [[bin]]
 name = "dsync"
