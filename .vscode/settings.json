@@ -21,5 +21,8 @@
         },
         "editor.suggest.insertMode": "replace",
         "editor.formatOnSave": true
+    },
+    "[sql]": {
+        "editor.formatOnSave": true
     }
 }

@@ -1,4 +1,4 @@
 -- Your SQL goes here
-CREATE TABLE clients(
+create table clients(
     telephone varchar(25) PRIMARY KEY
 );
