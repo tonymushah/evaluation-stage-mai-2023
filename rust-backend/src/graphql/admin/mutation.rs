@@ -3,6 +3,7 @@ pub mod devis;
 pub mod finition;
 pub mod materiels;
 pub mod type_chantier;
+pub mod unite;
 
 use actix_web::web;
 use async_graphql::{Context, Object};
@@ -12,6 +13,7 @@ use crate::{reset::reset_db, DbPool};
 use self::{
     chantier::AdminChantierMutations, devis::AdminDevisMutations, finition::AdminFinitionMutations,
     materiels::AdminMaterielMutations, type_chantier::AdminTypeChantierMutations,
+    unite::AdminUniteMutations,
 };
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -42,12 +44,15 @@ impl AdminMutation {
     pub async fn type_chantier(&self) -> AdminTypeChantierMutations {
         AdminTypeChantierMutations
     }
+    pub async fn unite(&self) -> AdminUniteMutations {
+        AdminUniteMutations
+    }
 }
 
 #[macro_export]
 macro_rules! generate_upserts {
     ($input: ty, $output: ty, $table: expr, $id: expr, $dsl: path) => {
-        pub async fn upsert(
+        pub async fn upsert_data(
             &self,
             ctx: &async_graphql::Context<'_>,
             input: $input,
@@ -71,7 +76,7 @@ macro_rules! generate_upserts {
             })
             .await?
         }
-        pub async fn upsert_batch(
+        pub async fn upsert_data_batch(
             &self,
             ctx: &async_graphql::Context<'_>,
             input: Vec<$input>,

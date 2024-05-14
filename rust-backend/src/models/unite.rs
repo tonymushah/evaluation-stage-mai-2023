@@ -18,6 +18,7 @@ use uuid::Uuid;
     Deserialize,
     Serialize,
     Queryable,
+    AsChangeset,
 )]
 #[diesel(table_name = unite)]
 #[diesel(primary_key(id_unite))]
