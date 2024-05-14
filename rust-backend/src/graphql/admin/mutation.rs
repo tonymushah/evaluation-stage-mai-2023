@@ -1,4 +1,5 @@
 pub mod chantier;
+pub mod client;
 pub mod devis;
 pub mod finition;
 pub mod materiels;
@@ -11,9 +12,9 @@ use async_graphql::{Context, Object};
 use crate::{reset::reset_db, DbPool};
 
 use self::{
-    chantier::AdminChantierMutations, devis::AdminDevisMutations, finition::AdminFinitionMutations,
-    materiels::AdminMaterielMutations, type_chantier::AdminTypeChantierMutations,
-    unite::AdminUniteMutations,
+    chantier::AdminChantierMutations, client::AdminClientMutations, devis::AdminDevisMutations,
+    finition::AdminFinitionMutations, materiels::AdminMaterielMutations,
+    type_chantier::AdminTypeChantierMutations, unite::AdminUniteMutations,
 };
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -46,6 +47,9 @@ impl AdminMutation {
     }
     pub async fn unite(&self) -> AdminUniteMutations {
         AdminUniteMutations
+    }
+    pub async fn clients(&self) -> AdminClientMutations {
+        AdminClientMutations
     }
 }
 
