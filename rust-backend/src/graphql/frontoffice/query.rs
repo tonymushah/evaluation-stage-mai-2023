@@ -1,3 +1,5 @@
+pub mod finitions;
+
 use actix_web::web::block;
 use async_graphql::{Context, Object};
 use diesel::prelude::*;

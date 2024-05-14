@@ -23,6 +23,8 @@ pub enum Error {
     JWT(#[from] jwt::Error),
     #[error("You cannot access this ressource")]
     Forbidden,
+    #[error("the defaulf finition is not found")]
+    StandardFinitionNotFound,
 }
 
 impl ErrorExtensions for Error {
@@ -92,6 +94,7 @@ impl ErrorExtensions for Error {
                     jwt::Error::Utf8(_) => e.set("code", "UTF-8"),
                 },
                 Error::Forbidden => e.set("code", "FORBIDDEN"),
+                Error::StandardFinitionNotFound => e.set("code", "DEFAULT_FINITION_NOT_FOUND"),
             })
         }
     }

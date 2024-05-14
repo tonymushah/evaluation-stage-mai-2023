@@ -1,4 +1,4 @@
-use crate::schema::finition;
+use crate::{schema::finition, DbPoolConnection};
 
 use async_graphql::SimpleObject;
 use bigdecimal::BigDecimal;
@@ -30,4 +30,18 @@ pub struct Finition {
     pub prix: BigDecimal,
     pub duree: BigDecimal,
     pub is_standard: Option<bool>,
+}
+
+impl Finition {
+    pub fn get_first_standard(con: &mut DbPoolConnection) -> crate::Result<Self> {
+        use crate::schema::finition::dsl::*;
+        finition
+            .filter(is_standard.eq(true))
+            .limit(1)
+            .select(Self::as_select())
+            .load(con)?
+            .first()
+            .cloned()
+            .ok_or(crate::Error::StandardFinitionNotFound)
+    }
 }

@@ -6,7 +6,7 @@ use diesel::{
     PgConnection, QueryResult, RunQueryDsl,
 };
 
-use crate::graphql::OffsetLimit;
+use crate::{graphql::OffsetLimit, DbPoolConnection};
 
 pub mod chantier;
 pub mod client;
@@ -88,6 +88,8 @@ impl<T: Query> Query for Paginated<T> {
 }
 
 impl<T> RunQueryDsl<PgConnection> for Paginated<T> {}
+
+impl<T> RunQueryDsl<DbPoolConnection> for Paginated<T> {}
 
 impl<T> Paginated<T> {
     pub fn load_and_count_pages<'a, U>(self, conn: &mut PgConnection) -> QueryResult<(Vec<U>, i64)>
