@@ -3,7 +3,7 @@ use bigdecimal::BigDecimal;
 use time::Date;
 use uuid::Uuid;
 
-use crate::{graphql, models::v_chantier_finition::VChantierFinition};
+use crate::models::v_chantier_finition::VChantierFinition;
 
 #[derive(Debug, SimpleObject, Clone)]
 pub struct ClientChantier {
