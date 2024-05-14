@@ -17,4 +17,5 @@ pub struct VChantierFinition {
     pub finition_duree: BigDecimal,
     pub finition: String,
     pub id_finition: Uuid,
+    pub type_chantier_id: Uuid,
 }

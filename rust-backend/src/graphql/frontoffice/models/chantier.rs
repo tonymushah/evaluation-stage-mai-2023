@@ -14,6 +14,8 @@ pub struct ClientChantier {
     pub finition_duree: BigDecimal,
     pub finition: String,
     pub id_finition: Uuid,
+    #[graphql(skip)]
+    pub type_chantier_id: Uuid,
 }
 
 impl From<VChantierFinition> for ClientChantier {
@@ -25,6 +27,7 @@ impl From<VChantierFinition> for ClientChantier {
             finition_duree: value.finition_duree,
             finition: value.finition,
             id_finition: value.id_finition,
+            type_chantier_id: value.type_chantier_id,
         }
     }
 }

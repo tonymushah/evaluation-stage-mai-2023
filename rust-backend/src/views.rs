@@ -35,6 +35,7 @@ table! {
         finition_prix -> Numeric,
         finition_duree -> Numeric,
         finition -> Text,
-        id_finition -> Uuid
+        id_finition -> Uuid,
+        type_chantier_id -> Uuid
     }
 }
