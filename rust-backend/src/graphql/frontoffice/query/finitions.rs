@@ -9,10 +9,10 @@ use crate::{
 };
 
 #[derive(Debug, Default, Clone, Copy)]
-pub struct FinitionQueries;
+pub struct ClientFinitionQueries;
 
 #[Object]
-impl FinitionQueries {
+impl ClientFinitionQueries {
     pub async fn get_default(&self, ctx: &Context<'_>) -> crate::Result<Finition> {
         let mut pool = ctx.data::<DbPool>().map_err(crate::Error::GraphQL)?.get()?;
         block(move || Finition::get_first_standard(&mut pool)).await?
