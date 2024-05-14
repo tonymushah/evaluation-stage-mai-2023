@@ -2,7 +2,7 @@ use async_graphql::{ComplexObject, SimpleObject};
 use bigdecimal::BigDecimal;
 use uuid::Uuid;
 
-use crate::models::{materiel::Materiel, unite::Unite};
+use crate::models::{materiel::Materiel, unite::Unite, v_devis_materiel::VDevisMateriel};
 
 #[derive(Debug, SimpleObject, Clone)]
 #[graphql(complex)]
@@ -20,6 +20,21 @@ pub struct ClientDevisItem {
     #[graphql(skip)]
     pub unite_id: Uuid,
     pub prix_total: BigDecimal,
+}
+
+impl From<VDevisMateriel> for ClientDevisItem {
+    fn from(value: VDevisMateriel) -> Self {
+        Self {
+            id: value.id_devis,
+            materiel_id: value.materiel_id,
+            materiel: value.materiel,
+            quantite: value.quantite,
+            prix_unitaire: value.prix_unitaire,
+            unite: value.unite,
+            unite_id: value.unite_id,
+            prix_total: value.prix_total,
+        }
+    }
 }
 
 #[ComplexObject]
@@ -43,7 +58,7 @@ impl ClientDevisItem {
 #[derive(Debug, Clone, SimpleObject)]
 #[graphql(complex)]
 pub struct ClientDevis {
-    items: Vec<ClientDevisItem>,
+    pub items: Vec<ClientDevisItem>,
 }
 
 #[ComplexObject]

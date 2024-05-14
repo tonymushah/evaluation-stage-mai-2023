@@ -22,7 +22,7 @@ use serde::{Deserialize, Serialize};
 #[primary_key(telephone)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Client {
-    telephone: String,
+    pub(crate) telephone: String,
 }
 
 impl Client {
