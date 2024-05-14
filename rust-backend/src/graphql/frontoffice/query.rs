@@ -1,9 +1,13 @@
 pub mod chantier;
 pub mod finitions;
+pub mod type_chantier;
 
 use async_graphql::{Context, Object};
 
-use self::{chantier::ClientChantierQueries, finitions::ClientFinitionQueries};
+use self::{
+    chantier::ClientChantierQueries, finitions::ClientFinitionQueries,
+    type_chantier::ClientTypeChantierQueries,
+};
 
 use super::CurrentClient;
 
@@ -25,5 +29,8 @@ impl FrontOfficeQuery {
     }
     pub async fn finitions(&self) -> ClientFinitionQueries {
         ClientFinitionQueries
+    }
+    pub async fn type_chantier(&self) -> ClientTypeChantierQueries {
+        ClientTypeChantierQueries
     }
 }
