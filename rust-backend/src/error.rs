@@ -25,6 +25,8 @@ pub enum Error {
     Forbidden,
     #[error("the defaulf finition is not found")]
     StandardFinitionNotFound,
+    #[error("The upsert result is not found ")]
+    UpsertNotFound,
 }
 
 impl ErrorExtensions for Error {
@@ -95,6 +97,7 @@ impl ErrorExtensions for Error {
                 },
                 Error::Forbidden => e.set("code", "FORBIDDEN"),
                 Error::StandardFinitionNotFound => e.set("code", "DEFAULT_FINITION_NOT_FOUND"),
+                Error::UpsertNotFound => e.set("code", "UPSERT_NOT_FOUND"),
             })
         }
     }

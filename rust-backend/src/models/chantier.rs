@@ -20,6 +20,7 @@ use uuid::Uuid;
     Deserialize,
     Serialize,
     Queryable,
+    AsChangeset,
 )]
 #[diesel(table_name = chantier)]
 #[diesel(primary_key(id_chantier))]
