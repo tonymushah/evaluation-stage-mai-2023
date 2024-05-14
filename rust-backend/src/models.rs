@@ -8,6 +8,7 @@ use diesel::{
 
 use crate::graphql::OffsetLimit;
 
+pub mod chantier;
 pub mod client;
 pub mod finition;
 pub mod materiel;
