@@ -1,7 +1,9 @@
 use async_graphql::{InputObject, SimpleObject};
 use diesel::{query_dsl::methods::LoadQuery, PgConnection, QueryResult};
 
-use crate::models::Paginated;
+use self::frontoffice::models::chantier::ClientChantier;
+
+use crate::models::{finition::Finition, type_chantier::TypeChantier, Paginated};
 
 pub mod admin;
 pub mod frontoffice;
@@ -23,6 +25,9 @@ impl Default for OffsetLimit {
 }
 
 #[derive(Debug, Clone, SimpleObject)]
+#[graphql(concrete(name = "ClientChantierResults", params(ClientChantier)))]
+#[graphql(concrete(name = "FinitionResults", params(Finition)))]
+#[graphql(concrete(name = "TypeChantierResults", params(TypeChantier)))]
 pub struct ResultsData<T>
 where
     T: async_graphql::OutputType,

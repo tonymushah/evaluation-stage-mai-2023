@@ -1,14 +1,133 @@
+scalar BigDecimal
 
+
+type ClientChantier {
+	id: UUID!
+	dateDebut: Date
+	finition: Finition!
+	typeChantier: TypeChantier!
+	devis: ClientDevis!
+}
+
+type ClientChantierQueries {
+	list(pagination: OffsetLimit! = {offset: 0, limit: 10}): ClientChantierResults!
+}
+
+type ClientChantierResults {
+	data: [ClientChantier!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type ClientDevis {
+	items: [ClientDevisItem!]!
+	prixTotal: BigDecimal
+}
+
+type ClientDevisItem {
+	id: UUID!
+	quantite: BigDecimal!
+	prixTotal: BigDecimal!
+	materiel: Materiel!
+	unite: Unite!
+}
+
+type ClientFinitionQueries {
+	getDefault: Finition!
+	list(page: OffsetLimit! = {offset: 0, limit: 10}): FinitionResults!
+}
+
+type ClientTypeChantierQueries {
+	list(page: OffsetLimit! = {offset: 0, limit: 10}): TypeChantierResults!
+}
+
+"""
+ISO 8601 calendar date without timezone.
+Format: %Y-%m-%d
+
+# Examples
+
+* `1994-11-13`
+* `2000-02-24`
+"""
+scalar Date
+
+type Finition {
+	idFinition: UUID!
+	designation: String!
+	prix: BigDecimal!
+	duree: BigDecimal!
+	isStandard: Boolean
+}
+
+type FinitionResults {
+	data: [Finition!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+
+type FrontOfficeMutation {
+	login(telephone: String!): String!
+}
 
 type FrontOfficeQuery {
 	hello: String!
+	chantiers: ClientChantierQueries!
+	finitions: ClientFinitionQueries!
+	typeChantier: ClientTypeChantierQueries!
 }
 
 
 
+type Materiel {
+	code: String!
+	designation: String!
+	prixUnitaire: BigDecimal!
+}
+
+input OffsetLimit {
+	offset: Int!
+	limit: Int!
+}
+
+
+type TypeChantier {
+	idTypeChantier: UUID!
+	nom: String!
+	description: String!
+	duree: BigDecimal!
+}
+
+type TypeChantierResults {
+	data: [TypeChantier!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+"""
+A UUID is a unique 128-bit number, stored as 16 octets. UUIDs are parsed as
+Strings within GraphQL. UUIDs are used to assign unique identifiers to
+entities without requiring a central allocating authority.
+
+# References
+
+* [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
+* [RFC4122: A Universally Unique IDentifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
+"""
+scalar UUID
+
+type Unite {
+	idUnite: UUID!
+	designation: String!
+}
 
 directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
 directive @skip(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
 schema {
 	query: FrontOfficeQuery
+	mutation: FrontOfficeMutation
 }
