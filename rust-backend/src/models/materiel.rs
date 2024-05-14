@@ -21,6 +21,7 @@ use uuid::Uuid;
     Serialize,
     Queryable,
     Associations,
+    AsChangeset,
 )]
 #[diesel(table_name = materiels)]
 #[diesel(primary_key(code))]
