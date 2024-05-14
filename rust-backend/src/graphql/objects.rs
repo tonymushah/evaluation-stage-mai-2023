@@ -1,4 +1,5 @@
 pub mod chantier;
+pub mod client;
 pub mod devis;
 pub mod finition;
 pub mod materiel;
