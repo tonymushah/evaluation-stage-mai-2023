@@ -6,7 +6,7 @@ use crate::models::{materiel::Materiel, unite::Unite};
 
 #[derive(Debug, SimpleObject, Clone)]
 #[graphql(complex)]
-pub struct DevisItem {
+pub struct ClientDevisItem {
     pub id: Uuid,
     #[graphql(skip)]
     pub materiel_id: String,
@@ -23,7 +23,7 @@ pub struct DevisItem {
 }
 
 #[ComplexObject]
-impl DevisItem {
+impl ClientDevisItem {
     pub async fn materiel(&self) -> Materiel {
         Materiel {
             code: self.materiel_id.clone(),
@@ -42,12 +42,12 @@ impl DevisItem {
 
 #[derive(Debug, Clone, SimpleObject)]
 #[graphql(complex)]
-pub struct Devis {
-    items: Vec<DevisItem>,
+pub struct ClientDevis {
+    items: Vec<ClientDevisItem>,
 }
 
 #[ComplexObject]
-impl Devis {
+impl ClientDevis {
     pub async fn prix_total(&self) -> Option<BigDecimal> {
         self.items
             .iter()
