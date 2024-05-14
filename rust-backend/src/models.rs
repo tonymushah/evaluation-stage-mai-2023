@@ -9,6 +9,7 @@ use diesel::{
 use crate::graphql::OffsetLimit;
 
 pub mod client;
+pub mod type_chantier;
 pub mod unite;
 pub mod v_chantier_finition;
 pub mod v_devis_materiel;
