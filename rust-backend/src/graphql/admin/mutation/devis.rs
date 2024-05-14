@@ -1,4 +1,5 @@
 use crate::{generate_upserts, graphql::objects::devis::DevisInput, models::devis::Devis};
+use async_graphql::Context;
 
 use async_graphql::Object;
 use diesel::prelude::*;
@@ -14,7 +15,14 @@ impl AdminDevisMutations {
         id_devis,
         crate::schema::devis::dsl
     );
-    pub async fn status(&self) -> String {
-        "Running HEhe!".into()
+    pub async fn upsert(&self, ctx: &Context<'_>, input: DevisInput) -> crate::Result<Devis> {
+        self.upsert_data(ctx, input).await
+    }
+    pub async fn upsert_batch(
+        &self,
+        ctx: &Context<'_>,
+        input: Vec<DevisInput>,
+    ) -> crate::Result<Vec<Devis>> {
+        self.upsert_data_batch(ctx, input).await
     }
 }
