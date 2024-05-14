@@ -25,3 +25,16 @@ table! {
         prix_total -> Numeric
     }
 }
+
+table! {
+    v_chantier_finition(id_chantier, id_finition, client) {
+        id_chantier -> Uuid,
+        #[max_length = 25]
+        client -> VarChar,
+        date_debut -> Nullable<Date>,
+        finition_prix -> Numeric,
+        finition_duree -> Numeric,
+        finition -> Text,
+        id_finition -> Uuid
+    }
+}

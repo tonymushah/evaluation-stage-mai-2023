@@ -6,12 +6,18 @@ use diesel::{
     PgConnection, QueryResult, RunQueryDsl,
 };
 
+use crate::graphql::OffsetLimit;
+
 pub mod client;
+pub mod v_chantier_finition;
 
 pub trait Paginate: Sized {
     fn paginate(self, offset: i64, limit: i64) -> Paginated<Self>;
     fn paginate_by_page(self, page: i64, page_size: i64) -> Paginated<Self> {
         self.paginate(page * page_size, page_size)
+    }
+    fn paginate_with_param(self, offset_limit: OffsetLimit) -> Paginated<Self> {
+        self.paginate(offset_limit.offset, offset_limit.limit)
     }
 }
 
@@ -46,6 +52,12 @@ impl<T> Paginated<T> {
             offset: self.offset + self.limit,
             ..self
         }
+    }
+    pub fn get_limit(&self) -> i64 {
+        self.limit
+    }
+    pub fn get_offset(&self) -> i64 {
+        self.offset
     }
 }
 

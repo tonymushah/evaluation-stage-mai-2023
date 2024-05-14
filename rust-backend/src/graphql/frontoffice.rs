@@ -1,10 +1,11 @@
+pub mod models;
 pub mod mutation;
 pub mod query;
 
 use std::ops::{Deref, DerefMut};
 
 use actix_web::{get, http::header::AUTHORIZATION, post, web, HttpRequest, HttpResponse};
-use async_graphql::{http::GraphiQLSource, EmptyMutation, EmptySubscription, Schema};
+use async_graphql::{http::GraphiQLSource, EmptySubscription, Schema};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use jwt::VerifyWithKey;
 use serde::{Deserialize, Serialize};
