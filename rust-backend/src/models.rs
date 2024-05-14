@@ -10,6 +10,7 @@ use crate::graphql::OffsetLimit;
 
 pub mod client;
 pub mod v_chantier_finition;
+pub mod v_devis_materiel;
 
 pub trait Paginate: Sized {
     fn paginate(self, offset: i64, limit: i64) -> Paginated<Self>;
