@@ -1,9 +1,12 @@
 pub mod chantier;
+pub mod devis;
 
 use actix_web::web;
 use async_graphql::{Context, Object};
 
 use crate::{graphql::admin::mutation::chantier::AdminChantierMutations, reset::reset_db, DbPool};
+
+use self::devis::AdminDevisMutations;
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
 pub struct AdminMutation;
@@ -20,6 +23,9 @@ impl AdminMutation {
     }
     pub async fn chantier(&self) -> AdminChantierMutations {
         AdminChantierMutations
+    }
+    pub async fn devis(&self) -> AdminDevisMutations {
+        AdminDevisMutations
     }
 }
 
