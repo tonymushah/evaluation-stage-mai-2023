@@ -10,6 +10,8 @@ use crate::{
     DbPool,
 };
 
+use self::finitions::FinitionQueries;
+
 use super::{models::chantier::ClientChantier, CurrentClient};
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -51,5 +53,8 @@ impl FrontOfficeQuery {
         })
         .await??;
         Ok(res)
+    }
+    pub async fn finitions(&self) -> FinitionQueries {
+        FinitionQueries
     }
 }
