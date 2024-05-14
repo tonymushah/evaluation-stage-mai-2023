@@ -21,6 +21,8 @@ pub enum Error {
     Blocking(#[from] actix_web::error::BlockingError),
     #[error("{0}")]
     JWT(#[from] jwt::Error),
+    #[error("You cannot access this ressource")]
+    Forbidden,
 }
 
 impl ErrorExtensions for Error {
@@ -89,6 +91,7 @@ impl ErrorExtensions for Error {
                     jwt::Error::TooManyComponents => e.set("code", "TOO_MANY_COMPONENTS"),
                     jwt::Error::Utf8(_) => e.set("code", "UTF-8"),
                 },
+                Error::Forbidden => e.set("code", "FORBIDDEN"),
             })
         }
     }
