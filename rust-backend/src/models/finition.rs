@@ -20,6 +20,7 @@ use uuid::Uuid;
     Deserialize,
     Serialize,
     Queryable,
+    AsChangeset,
 )]
 #[diesel(table_name = finition)]
 #[diesel(primary_key(id_finition))]
