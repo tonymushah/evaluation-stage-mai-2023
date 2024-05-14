@@ -22,7 +22,7 @@ use uuid::Uuid;
     Queryable,
 )]
 #[diesel(table_name = devis)]
-#[primary_key(id_devis)]
+#[diesel(primary_key(id_devis))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Devis {
     pub id_devis: Uuid,

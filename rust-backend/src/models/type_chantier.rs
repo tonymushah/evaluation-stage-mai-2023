@@ -1,5 +1,6 @@
 use crate::schema::type_chantier;
 use async_graphql::SimpleObject;
+use bigdecimal::BigDecimal;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -20,10 +21,11 @@ use uuid::Uuid;
     Queryable,
 )]
 #[diesel(table_name = type_chantier)]
-#[primary_key(id_type_chantier)]
+#[diesel(primary_key(id_type_chantier))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct TypeChantier {
     pub id_type_chantier: Uuid,
     pub nom: String,
     pub description: String,
+    pub duree: BigDecimal,
 }

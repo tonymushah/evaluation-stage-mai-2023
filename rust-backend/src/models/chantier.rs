@@ -22,7 +22,7 @@ use uuid::Uuid;
     Queryable,
 )]
 #[diesel(table_name = chantier)]
-#[primary_key(id_chantier)]
+#[diesel(primary_key(id_chantier))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Chantier {
     pub id_chantier: Uuid,

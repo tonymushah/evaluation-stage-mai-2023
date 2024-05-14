@@ -19,7 +19,7 @@ use serde::{Deserialize, Serialize};
     Queryable,
 )]
 #[diesel(table_name = clients)]
-#[primary_key(telephone)]
+#[diesel(primary_key(telephone))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Client {
     pub(crate) telephone: String,

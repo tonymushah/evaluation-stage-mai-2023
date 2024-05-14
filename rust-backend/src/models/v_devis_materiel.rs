@@ -6,7 +6,7 @@ use crate::views::v_devis_materiel;
 
 #[derive(Debug, Queryable, Identifiable, Selectable)]
 #[diesel(table_name = v_devis_materiel)]
-#[primary_key(id_devis, unite_id, materiel_id)]
+#[diesel(primary_key(id_devis, unite_id, materiel_id))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct VDevisMateriel {
     pub id_devis: Uuid,

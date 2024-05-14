@@ -7,7 +7,7 @@ use crate::views::v_chantier_finition;
 
 #[derive(Debug, Queryable, Identifiable, Selectable)]
 #[diesel(table_name = v_chantier_finition)]
-#[primary_key(id_chantier, client, id_finition)]
+#[diesel(primary_key(id_chantier, client, id_finition))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct VChantierFinition {
     pub id_chantier: Uuid,

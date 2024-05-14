@@ -22,7 +22,7 @@ use uuid::Uuid;
     Queryable,
 )]
 #[diesel(table_name = finition)]
-#[primary_key(id_finition)]
+#[diesel(primary_key(id_finition))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Finition {
     pub id_finition: Uuid,

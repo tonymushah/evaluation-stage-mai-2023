@@ -20,7 +20,7 @@ use uuid::Uuid;
     Queryable,
 )]
 #[diesel(table_name = unite)]
-#[primary_key(id_unite)]
+#[diesel(primary_key(id_unite))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Unite {
     pub id_unite: Uuid,

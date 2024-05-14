@@ -23,7 +23,7 @@ use uuid::Uuid;
     Associations,
 )]
 #[diesel(table_name = materiels)]
-#[primary_key(code)]
+#[diesel(primary_key(code))]
 #[diesel(belongs_to(super::unite::Unite))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Materiel {
