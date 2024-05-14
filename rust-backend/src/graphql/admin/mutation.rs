@@ -2,6 +2,7 @@ pub mod chantier;
 pub mod devis;
 pub mod finition;
 pub mod materiels;
+pub mod type_chantier;
 
 use actix_web::web;
 use async_graphql::{Context, Object};
@@ -10,7 +11,7 @@ use crate::{reset::reset_db, DbPool};
 
 use self::{
     chantier::AdminChantierMutations, devis::AdminDevisMutations, finition::AdminFinitionMutations,
-    materiels::AdminMaterielMutations,
+    materiels::AdminMaterielMutations, type_chantier::AdminTypeChantierMutations,
 };
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -37,6 +38,9 @@ impl AdminMutation {
     }
     pub async fn materiel(&self) -> AdminMaterielMutations {
         AdminMaterielMutations
+    }
+    pub async fn type_chantier(&self) -> AdminTypeChantierMutations {
+        AdminTypeChantierMutations
     }
 }
 
