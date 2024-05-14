@@ -5,6 +5,7 @@ use crate::models::Paginated;
 
 pub mod admin;
 pub mod frontoffice;
+pub mod objects;
 
 #[derive(Debug, Clone, Copy, InputObject)]
 pub struct OffsetLimit {
