@@ -1,4 +1,4 @@
-use crate::{schema::clients, DbPool, DbPoolConnection};
+use crate::{schema::clients, DbPoolConnection};
 use async_graphql::SimpleObject;
 use diesel::{associations::HasTable, insert_into, prelude::*};
 use serde::{Deserialize, Serialize};
