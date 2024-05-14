@@ -19,6 +19,8 @@ pub enum Error {
     GraphQL(async_graphql::Error),
     #[error("{0}")]
     Blocking(#[from] actix_web::error::BlockingError),
+    #[error("{0}")]
+    JWT(#[from] jwt::Error),
 }
 
 impl ErrorExtensions for Error {
@@ -69,6 +71,24 @@ impl ErrorExtensions for Error {
                 Error::PoolConnection(_) => e.set("code", "POOL_CONNECTION"),
                 Error::GraphQL(_) => e.set("code", "INNER_GRAPHQL"),
                 Error::Blocking(_) => e.set("code", "TASK_BLOCKING"),
+                Error::JWT(er) => match er {
+                    jwt::Error::AlgorithmMismatch(_, _) => e.set("code", "ALGORITHM_MISMATCH"),
+                    jwt::Error::Base64(_) => e.set("code", "BASE64"),
+                    jwt::Error::Format => e.set("code", "JWT_FORMAT"),
+                    jwt::Error::InvalidSignature => e.set("code", "INVALID_SIGNATURE"),
+                    jwt::Error::Json(_) => e.set("code", "JWT_JSON"),
+                    jwt::Error::NoClaimsComponent => e.set("code", "NO_CLAIMS_COMPONENT"),
+                    jwt::Error::NoHeaderComponent => e.set("code", "NO_HEADER_COMPONENT"),
+                    jwt::Error::NoKeyId => e.set("code", "NO_KEY_ID"),
+                    jwt::Error::NoKeyWithKeyId(_) => e.set("code", "NO_KEY_WITH_KEY_ID"),
+                    jwt::Error::NoSignatureComponent => e.set("code", "NO_SIGNATURE_COMPONENT"),
+                    jwt::Error::RustCryptoMac(_) => e.set("code", "RUST_CRYPTO_MAC"),
+                    jwt::Error::RustCryptoMacKeyLength(_) => {
+                        e.set("code", "RUST_CRYPTO_MAC_KEY_LENGTH")
+                    }
+                    jwt::Error::TooManyComponents => e.set("code", "TOO_MANY_COMPONENTS"),
+                    jwt::Error::Utf8(_) => e.set("code", "UTF-8"),
+                },
             })
         }
     }

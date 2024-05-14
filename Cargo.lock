@@ -1547,8 +1547,10 @@ dependencies = [
  "diesel",
  "dotenvy",
  "dsync",
+ "hmac",
  "jwt",
  "serde",
+ "sha2",
  "thiserror",
  "uuid",
 ]
