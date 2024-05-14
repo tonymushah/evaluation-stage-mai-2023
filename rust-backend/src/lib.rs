@@ -11,7 +11,7 @@ use std::env;
 
 // add the `r2d2` feature for diesel
 use diesel::{
-    r2d2::{ConnectionManager, Pool},
+    r2d2::{ConnectionManager, Pool, PooledConnection},
     PgConnection,
 };
 use dotenvy::dotenv;
@@ -19,6 +19,8 @@ use graphql::{admin::AdminSchema, frontoffice::FrontOfficeSchema};
 
 // set an alias, so we don't have to keep writing out this long type
 pub type DbPool = Pool<ConnectionManager<PgConnection>>;
+
+pub type DbPoolConnection = PooledConnection<ConnectionManager<PgConnection>>;
 
 pub fn etablish_connection() -> DbPool {
     dotenv().ok();
