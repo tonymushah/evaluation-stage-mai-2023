@@ -1,8 +1,8 @@
-use crate::{schema::materiels, DbPoolConnection};
+use crate::schema::materiels;
 
 use async_graphql::SimpleObject;
 use bigdecimal::BigDecimal;
-use diesel::{associations::HasTable, insert_into, prelude::*};
+use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
