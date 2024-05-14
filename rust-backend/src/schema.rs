@@ -53,6 +53,7 @@ diesel::table! {
         id_type_chantier -> Uuid,
         nom -> Text,
         description -> Text,
+        duree -> Numeric,
     }
 }
 
