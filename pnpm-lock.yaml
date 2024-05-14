@@ -108,6 +108,9 @@ importers:
       vite:
         specifier: ^5.0.3
         version: 5.2.11(@types/node@20.12.11)
+      vite-plugin-kit-routes:
+        specifier: ^0.6.2
+        version: 0.6.2
       vitest:
         specifier: ^1.2.0
         version: 1.6.0(@types/node@20.12.11)
@@ -1241,6 +1244,14 @@ packages:
   '@kamilkisiela/fast-url-parser@1.1.4':
     resolution: {integrity: sha512-gbkePEBupNydxCelHCESvFSFM8XPh1Zs/OAVRW/rKpEqPAl5PbOM90Si8mv9bvnR53uPD2s/FiRxdvSejpRJew==}
 
+  '@kitql/helpers@0.8.9':
+    resolution: {integrity: sha512-uDBFBvCYUT4UaZZKv7gJejQvbrOp4YyI1S0Z92DPiMbyLq0DPDXz3Lt2ZqUZKlQrinBX+W1TO6w0RudEX6Q6WA==}
+    engines: {node: ^16.14 || >=18}
+
+  '@kitql/internals@0.9.5':
+    resolution: {integrity: sha512-HkqjpT2BUwINmMuZQUjjDNEAGKrOaS8vR8xEEdhkJl4w/5BgOzgSpRlojilH9liNcfGtdz5HHbRoXN91VLf0Ng==}
+    engines: {node: ^16.14 || >=18}
+
   '@mdx-js/react@3.0.1':
     resolution: {integrity: sha512-9ZrPIU4MGf6et1m1ov3zKf+q9+deetI51zprKB1D/z3NOb+rUxxtEl3mCjW5wTGh6VhRdwPueh1oRzi6ezkA8A==}
     peerDependencies:
@@ -2088,6 +2099,9 @@ packages:
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
+
+  axobject-query@3.2.1:
+    resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
 
   axobject-query@4.0.0:
     resolution: {integrity: sha512-+60uv1hiVFhHZeO+Lz0RYzsVHy5Wr1ayX0mwda9KPDVLNJgZ1T9Ny7VmFbLDzxsH0D87I86vgj3gFrjTJUYznw==}
@@ -4599,6 +4613,10 @@ packages:
       typescript:
         optional: true
 
+  svelte@4.2.1:
+    resolution: {integrity: sha512-LpLqY2Jr7cRxkrTc796/AaaoMLF/1ax7cto8Ot76wrvKQhrPmZ0JgajiWPmg9mTSDqO16SSLiD17r9MsvAPTmw==}
+    engines: {node: '>=16'}
+
   svelte@4.2.16:
     resolution: {integrity: sha512-mQwHpqHD2PmFcCyHaZ7XiTqposaLvJ75WpYcyY5/ce3qxbYtwQpZ+M7ZKP+2CG5U6kfnBZBpPLyofhlE6ROrnQ==}
     engines: {node: '>=16'}
@@ -4883,6 +4901,14 @@ packages:
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-plugin-kit-routes@0.6.2:
+    resolution: {integrity: sha512-Fl5yCUwSfOvoOrI6FB8tnjGAghOb5KcXzcj0SEoZ1VIifgEeYggoAeoaoAu2pZxWy862s6RBBR+L5LumZZ+kYw==}
+    engines: {node: ^16.14 || >=18}
+
+  vite-plugin-watch-and-run@1.7.0:
+    resolution: {integrity: sha512-f6TUUxDvOeFPMJ1/NDK8N1y/65w8h4jPZGsuOOYVnaK4lkutN95rTNAunsr0fcgTVo1BRUMxDTY7iFlsGuiCig==}
+    engines: {node: ^16.14 || >=18}
 
   vite@5.2.11:
     resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
@@ -6552,6 +6578,17 @@ snapshots:
 
   '@kamilkisiela/fast-url-parser@1.1.4': {}
 
+  '@kitql/helpers@0.8.9':
+    dependencies:
+      esm-env: 1.0.0
+
+  '@kitql/internals@0.9.5':
+    dependencies:
+      '@babel/parser': 7.24.5
+      '@kitql/helpers': 0.8.9
+      recast: 0.23.7
+      svelte: 4.2.1
+
   '@mdx-js/react@3.0.1(@types/react@18.3.2)(react@18.3.1)':
     dependencies:
       '@types/mdx': 2.0.13
@@ -7889,6 +7926,10 @@ snapshots:
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.0.0
+
+  axobject-query@3.2.1:
+    dependencies:
+      dequal: 2.0.3
 
   axobject-query@4.0.0:
     dependencies:
@@ -10639,6 +10680,22 @@ snapshots:
       postcss-load-config: 3.1.4(postcss@8.4.38)
       typescript: 5.4.5
 
+  svelte@4.2.1:
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@jridgewell/sourcemap-codec': 1.4.15
+      '@jridgewell/trace-mapping': 0.3.25
+      acorn: 8.11.3
+      aria-query: 5.3.0
+      axobject-query: 3.2.1
+      code-red: 1.0.4
+      css-tree: 2.3.1
+      estree-walker: 3.0.3
+      is-reference: 3.0.2
+      locate-character: 3.0.0
+      magic-string: 0.30.10
+      periscopic: 3.1.0
+
   svelte@4.2.16:
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -10921,6 +10978,19 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-kit-routes@0.6.2:
+    dependencies:
+      '@babel/parser': 7.24.5
+      '@kitql/helpers': 0.8.9
+      '@kitql/internals': 0.9.5
+      recast: 0.23.7
+      vite-plugin-watch-and-run: 1.7.0
+
+  vite-plugin-watch-and-run@1.7.0:
+    dependencies:
+      '@kitql/helpers': 0.8.9
+      micromatch: 4.0.5
 
   vite@5.2.11(@types/node@20.12.11):
     dependencies:
