@@ -64,6 +64,12 @@ export type ClientChantierResults = {
   total: Scalars['Int']['output'];
 };
 
+export type ClientCreateChantier = {
+  dateDebut?: InputMaybe<Scalars['Date']['input']>;
+  typeChantier: Scalars['UUID']['input'];
+  typeFinitionId?: InputMaybe<Scalars['UUID']['input']>;
+};
+
 export type ClientDevis = {
   __typename?: 'ClientDevis';
   items: Array<ClientDevisItem>;
@@ -119,7 +125,13 @@ export type FinitionResults = {
 
 export type FrontOfficeMutation = {
   __typename?: 'FrontOfficeMutation';
+  createChantier: ClientChantier;
   login: Scalars['String']['output'];
+};
+
+
+export type FrontOfficeMutationCreateChantierArgs = {
+  input: ClientCreateChantier;
 };
 
 

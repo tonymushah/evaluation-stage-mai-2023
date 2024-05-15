@@ -20,6 +20,12 @@ type ClientChantierResults {
 	total: Int!
 }
 
+input ClientCreateChantier {
+	typeChantier: UUID!
+	dateDebut: Date
+	typeFinitionId: UUID
+}
+
 type ClientDevis {
 	items: [ClientDevisItem!]!
 	prixTotal: BigDecimal
@@ -71,6 +77,7 @@ type FinitionResults {
 
 type FrontOfficeMutation {
 	login(telephone: String!): String!
+	createChantier(input: ClientCreateChantier!): ClientChantier!
 }
 
 type FrontOfficeQuery {
