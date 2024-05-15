@@ -3,7 +3,7 @@ use diesel::{query_dsl::methods::LoadQuery, PgConnection, QueryResult};
 
 use self::{
     admin::objects::{
-        chantier::AdminChantier, clients::AdminClient, finition::AdminFinition,
+        chantier::AdminChantier, clients::AdminClient, devis::AdminDevis, finition::AdminFinition,
         materiels::AdminMateriel, type_chantier::AdminTypeChantier, unite::AdminUnite,
     },
     frontoffice::models::chantier::ClientChantier,
@@ -40,6 +40,7 @@ impl Default for OffsetLimit {
 #[graphql(concrete(name = "AdminMaterielResults", params(AdminMateriel)))]
 #[graphql(concrete(name = "AdminTypeChantierResults", params(AdminTypeChantier)))]
 #[graphql(concrete(name = "AdminUniteResults", params(AdminUnite)))]
+#[graphql(concrete(name = "AdminDevisResults", params(AdminDevis)))]
 pub struct ResultsData<T>
 where
     T: async_graphql::OutputType,
