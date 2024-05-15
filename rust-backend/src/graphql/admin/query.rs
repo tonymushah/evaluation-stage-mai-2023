@@ -3,12 +3,14 @@ pub mod clients;
 pub mod devis;
 pub mod finition;
 pub mod materiels;
+pub mod type_chantier;
 
 use async_graphql::Object;
 
 use self::{
     chantier::AdminChantierQuery, clients::AdminClientQuery, devis::AdminDevisQuery,
     finition::AdminFinitionQuery, materiels::AdminMaterielQuery,
+    type_chantier::AdminTypeChantierQuery,
 };
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -33,6 +35,9 @@ impl AdminQuery {
     }
     pub async fn materiels(&self) -> AdminMaterielQuery {
         AdminMaterielQuery
+    }
+    pub async fn type_chantier(&self) -> AdminTypeChantierQuery {
+        AdminTypeChantierQuery
     }
 }
 
