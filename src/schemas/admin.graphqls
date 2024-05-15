@@ -1,6 +1,8 @@
 type AdminChantier {
 	idChantier: UUID!
 	dateDebut: Date
+	typeChantier: AdminTypeChantier!
+	finition: AdminFinition!
 }
 
 type AdminChantierMutations {
@@ -43,8 +45,9 @@ type AdminClientResults {
 
 type AdminDevis {
 	idDevis: UUID!
-	typeChantierId: UUID!
 	quantite: BigDecimal!
+	typeChantier: AdminTypeChantier!
+	materiel: AdminMateriel!
 }
 
 type AdminDevisMutations {
@@ -93,6 +96,7 @@ type AdminMateriel {
 	code: String!
 	designation: String!
 	prixUnitaire: BigDecimal!
+	unite: AdminUnite!
 }
 
 type AdminMaterielMutations {

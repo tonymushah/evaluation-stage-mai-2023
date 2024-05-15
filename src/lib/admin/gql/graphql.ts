@@ -40,7 +40,9 @@ export type Scalars = {
 export type AdminChantier = {
   __typename?: 'AdminChantier';
   dateDebut?: Maybe<Scalars['Date']['output']>;
+  finition: AdminFinition;
   idChantier: Scalars['UUID']['output'];
+  typeChantier: AdminTypeChantier;
 };
 
 export type AdminChantierMutations = {
@@ -131,8 +133,9 @@ export type AdminClientResults = {
 export type AdminDevis = {
   __typename?: 'AdminDevis';
   idDevis: Scalars['UUID']['output'];
+  materiel: AdminMateriel;
   quantite: Scalars['BigDecimal']['output'];
-  typeChantierId: Scalars['UUID']['output'];
+  typeChantier: AdminTypeChantier;
 };
 
 export type AdminDevisMutations = {
@@ -229,6 +232,7 @@ export type AdminMateriel = {
   code: Scalars['String']['output'];
   designation: Scalars['String']['output'];
   prixUnitaire: Scalars['BigDecimal']['output'];
+  unite: AdminUnite;
 };
 
 export type AdminMaterielMutations = {
