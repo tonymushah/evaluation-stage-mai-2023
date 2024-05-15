@@ -2,7 +2,7 @@ import { graphql } from "$lib/client/gql";
 import { fail, redirect } from "@sveltejs/kit";
 import { frontOfficeClient } from "../../../server/frontOfficeClient";
 import type { Actions } from "./$types";
-import { COOKIE_PATH } from "$env/static/private";
+import { CLIENT_COOKIE_PATH } from "$env/static/private";
 import { route } from "$lib/ROUTES";
 
 const loginMutation = graphql(`
@@ -38,7 +38,7 @@ export const actions = {
     }
     if (result.data) {
       cookies.set("clientToken", result.data.login, {
-        path: COOKIE_PATH,
+        path: CLIENT_COOKIE_PATH,
       });
       redirect(300, route("/client"));
       return { success: true };
