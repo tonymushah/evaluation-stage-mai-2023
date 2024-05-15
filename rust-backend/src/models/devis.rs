@@ -27,6 +27,7 @@ use uuid::Uuid;
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Devis {
     pub id_devis: Uuid,
+    #[graphql(skip)]
     pub type_chantier_id: Uuid,
     #[graphql(skip)]
     pub materiel_id: String,
