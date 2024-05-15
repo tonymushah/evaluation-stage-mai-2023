@@ -3,7 +3,7 @@ pub mod clients;
 
 use async_graphql::Object;
 
-use self::chantier::AdminChantierQuery;
+use self::{chantier::AdminChantierQuery, clients::AdminClientQuery};
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
 pub struct AdminQuery;
@@ -15,6 +15,9 @@ impl AdminQuery {
     }
     pub async fn chantier(&self) -> AdminChantierQuery {
         AdminChantierQuery
+    }
+    pub async fn clients(&self) -> AdminClientQuery {
+        AdminClientQuery
     }
 }
 
