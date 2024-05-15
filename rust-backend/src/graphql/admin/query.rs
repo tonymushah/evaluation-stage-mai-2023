@@ -1,4 +1,5 @@
 pub mod chantier;
+pub mod clients;
 
 use async_graphql::Object;
 
@@ -19,7 +20,7 @@ impl AdminQuery {
 
 #[macro_export]
 macro_rules! generate_pagination {
-    ($input: ty, $output: ty, $table: expr, $id: expr, $dsl: path) => {
+    ($input: ty, $output: ty, $table: expr, $id: expr, $id_type: ty, $dsl: path) => {
         pub async fn get_list(
             &self,
             ctx: &async_graphql::Context<'_>,
@@ -44,6 +45,26 @@ macro_rules! generate_pagination {
                     })
                 },
             )
+            .await?
+        }
+        pub async fn get_unique(
+            &self,
+            ctx: &async_graphql::Context<'_>,
+            id: $id_type,
+        ) -> $crate::Result<$output> {
+            let mut pool = $crate::graphql::get_pool(ctx)?;
+            actix_web::web::block(move || -> $crate::Result<$output> {
+                use diesel::prelude::*;
+                use $dsl::*;
+                let data = $table
+                    .filter($id.eq(id))
+                    .select(<$input as SelectableHelper<diesel::pg::Pg>>::as_select())
+                    .load::<$input>(&mut pool)?
+                    .first()
+                    .cloned()
+                    .ok_or($crate::Error::Diesel(diesel::result::Error::NotFound))?;
+                Ok(data.into())
+            })
             .await?
         }
     };
