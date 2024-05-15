@@ -5,7 +5,7 @@ use uuid::Uuid;
 
 use crate::views::v_chantier_finition;
 
-#[derive(Debug, Queryable, Identifiable, Selectable)]
+#[derive(Debug, Queryable, Identifiable, Selectable, Clone)]
 #[diesel(table_name = v_chantier_finition)]
 #[diesel(primary_key(id_chantier, client, id_finition))]
 #[diesel(check_for_backend(diesel::pg::Pg))]

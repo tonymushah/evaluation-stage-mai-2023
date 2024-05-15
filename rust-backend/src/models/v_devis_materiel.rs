@@ -4,7 +4,7 @@ use uuid::Uuid;
 
 use crate::views::v_devis_materiel;
 
-#[derive(Debug, Queryable, Identifiable, Selectable)]
+#[derive(Debug, Queryable, Identifiable, Selectable, Clone)]
 #[diesel(table_name = v_devis_materiel)]
 #[diesel(primary_key(id_devis, unite_id, materiel_id))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
