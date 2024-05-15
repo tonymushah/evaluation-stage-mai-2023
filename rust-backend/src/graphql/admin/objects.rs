@@ -2,6 +2,7 @@ pub mod chantier;
 pub mod clients;
 pub mod devis;
 pub mod finition;
+pub mod materiels;
 pub mod type_chantier;
 pub mod unite;
 
