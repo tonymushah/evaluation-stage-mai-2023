@@ -2,12 +2,13 @@ pub mod chantier;
 pub mod clients;
 pub mod devis;
 pub mod finition;
+pub mod materiels;
 
 use async_graphql::Object;
 
 use self::{
     chantier::AdminChantierQuery, clients::AdminClientQuery, devis::AdminDevisQuery,
-    finition::AdminFinitionQuery,
+    finition::AdminFinitionQuery, materiels::AdminMaterielQuery,
 };
 
 #[derive(Debug, Clone, Copy, Hash, Default)]
@@ -29,6 +30,9 @@ impl AdminQuery {
     }
     pub async fn finition(&self) -> AdminFinitionQuery {
         AdminFinitionQuery
+    }
+    pub async fn materiels(&self) -> AdminMaterielQuery {
+        AdminMaterielQuery
     }
 }
 
