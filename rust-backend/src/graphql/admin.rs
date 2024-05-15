@@ -1,4 +1,5 @@
 pub mod mutation;
+pub mod objects;
 pub mod query;
 
 use std::ops::{Deref, DerefMut};
