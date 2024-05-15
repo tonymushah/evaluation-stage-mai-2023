@@ -1,4 +1,5 @@
 /* eslint-disable */
+import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -180,3 +181,13 @@ export type Unite = {
   designation: Scalars['String']['output'];
   idUnite: Scalars['UUID']['output'];
 };
+
+export type ClientLoginMutationVariables = Exact<{
+  telephone: Scalars['String']['input'];
+}>;
+
+
+export type ClientLoginMutation = { __typename?: 'FrontOfficeMutation', login: string };
+
+
+export const ClientLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"clientLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"telephone"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"telephone"},"value":{"kind":"Variable","name":{"kind":"Name","value":"telephone"}}}]}]}}]} as unknown as DocumentNode<ClientLoginMutation, ClientLoginMutationVariables>;
