@@ -1,15 +1,265 @@
+type AdminChantier {
+	idChantier: UUID!
+	dateDebut: Date
+}
+
+type AdminChantierMutations {
+	upsert(input: ChantierInput!): AdminChantier!
+	upsertBatch(input: [ChantierInput!]!): [AdminChantier!]!
+}
+
+type AdminChantierQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminChantierResults!
+	unique(id: UUID!): AdminChantier!
+}
+
+type AdminChantierResults {
+	data: [AdminChantier!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type AdminClient {
+	telephone: String!
+}
+
+type AdminClientMutations {
+	insert(input: ClientInput!): AdminClient!
+	insertBatch(input: [ClientInput!]!): [AdminClient!]!
+}
+
+type AdminClientQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminClientResults!
+	unique(telephone: String!): AdminClient!
+}
+
+type AdminClientResults {
+	data: [AdminClient!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type AdminDevis {
+	idDevis: UUID!
+	typeChantierId: UUID!
+	quantite: BigDecimal!
+}
+
+type AdminDevisMutations {
+	upsert(input: DevisInput!): AdminDevis!
+	upsertBatch(input: [DevisInput!]!): [AdminDevis!]!
+}
+
+type AdminDevisQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminDevisResults!
+	unique(id: UUID!): AdminDevis!
+}
+
+type AdminDevisResults {
+	data: [AdminDevis!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type AdminFinition {
+	idFinition: UUID!
+	designation: String!
+	prix: BigDecimal!
+	duree: BigDecimal!
+	isStandard: Boolean
+}
+
+type AdminFinitionMutations {
+	upsert(input: FinitionInput!): AdminFinition!
+	upsertBatch(input: [FinitionInput!]!): [AdminFinition!]!
+}
+
+type AdminFinitionQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminFinitionResults!
+	unique(id: UUID!): AdminFinition!
+}
+
+type AdminFinitionResults {
+	data: [AdminFinition!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type AdminMateriel {
+	code: String!
+	designation: String!
+	prixUnitaire: BigDecimal!
+}
+
+type AdminMaterielMutations {
+	upsert(input: MaterielInput!): AdminMateriel!
+	upsertBatch(input: [MaterielInput!]!): [AdminMateriel!]!
+}
+
+type AdminMaterielQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminMaterielResults!
+	unique(code: String!): AdminMateriel!
+}
+
+type AdminMaterielResults {
+	data: [AdminMateriel!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
 type AdminMutation {
 	resetDb: Boolean!
+	chantier: AdminChantierMutations!
+	devis: AdminDevisMutations!
+	finition: AdminFinitionMutations!
+	materiel: AdminMaterielMutations!
+	typeChantier: AdminTypeChantierMutations!
+	unite: AdminUniteMutations!
+	clients: AdminClientMutations!
 }
 
 type AdminQuery {
 	hello: String!
+	chantier: AdminChantierQuery!
+	clients: AdminClientQuery!
+	devis: AdminDevisQuery!
+	finition: AdminFinitionQuery!
+	materiels: AdminMaterielQuery!
+	typeChantier: AdminTypeChantierQuery!
+	unite: AdminUniteQuery!
+}
+
+type AdminTypeChantier {
+	idTypeChantier: UUID!
+	nom: String!
+	description: String!
+	duree: BigDecimal!
+}
+
+type AdminTypeChantierMutations {
+	upsert(input: TypeChantierInput!): AdminTypeChantier!
+	upsertBatch(input: [TypeChantierInput!]!): [AdminTypeChantier!]!
+}
+
+type AdminTypeChantierQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminTypeChantierResults!
+	unique(id: UUID!): AdminTypeChantier!
+}
+
+type AdminTypeChantierResults {
+	data: [AdminTypeChantier!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+type AdminUnite {
+	idUnite: UUID!
+	designation: String!
+}
+
+type AdminUniteMutations {
+	upsert(input: UniteInput!): AdminUnite!
+	upsertBatch(input: [UniteInput!]!): [AdminUnite!]!
+}
+
+type AdminUniteQuery {
+	list(input: OffsetLimit! = {offset: 0, limit: 10}): AdminUniteResults!
+	unique(id: UUID!): AdminUnite!
+}
+
+type AdminUniteResults {
+	data: [AdminUnite!]!
+	limit: Int!
+	offset: Int!
+	total: Int!
+}
+
+scalar BigDecimal
+
+
+input ChantierInput {
+	id: UUID
+	client: String!
+	typeChantierId: UUID!
+	typeFinitionId: UUID!
+	dateDebut: Date
+}
+
+input ClientInput {
+	telephone: String!
+}
+
+"""
+ISO 8601 calendar date without timezone.
+Format: %Y-%m-%d
+
+# Examples
+
+* `1994-11-13`
+* `2000-02-24`
+"""
+scalar Date
+
+input DevisInput {
+	id: UUID
+	typeChantierId: UUID!
+	materielId: String!
+	quantite: BigDecimal!
+}
+
+input FinitionInput {
+	id: UUID
+	designation: String!
+	prix: BigDecimal!
+	duree: BigDecimal!
+	isStandard: Boolean
 }
 
 
 
 
+input MaterielInput {
+	code: String!
+	designation: String!
+	prixUnitaire: BigDecimal!
+	uniteId: UUID!
+}
 
+input OffsetLimit {
+	offset: Int!
+	limit: Int!
+}
+
+
+input TypeChantierInput {
+	id: UUID
+	nom: String!
+	description: String!
+	duree: BigDecimal!
+}
+
+"""
+A UUID is a unique 128-bit number, stored as 16 octets. UUIDs are parsed as
+Strings within GraphQL. UUIDs are used to assign unique identifiers to
+entities without requiring a central allocating authority.
+
+# References
+
+* [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
+* [RFC4122: A Universally Unique IDentifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
+"""
+scalar UUID
+
+input UniteInput {
+	id: UUID
+	designation: String!
+}
 
 directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
 directive @skip(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
