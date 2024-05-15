@@ -1,4 +1,8 @@
-use crate::{graphql::objects::client::ClientInput, models::client::Client, DbPool};
+use crate::{
+    graphql::{admin::objects::clients::AdminClient, objects::client::ClientInput},
+    models::client::Client,
+    DbPool,
+};
 
 use async_graphql::{Context, Object};
 use diesel::prelude::*;
@@ -7,7 +11,11 @@ pub struct AdminClientMutations;
 
 #[Object]
 impl AdminClientMutations {
-    pub async fn insert(&self, ctx: &Context<'_>, input: ClientInput) -> crate::Result<Client> {
+    pub async fn insert(
+        &self,
+        ctx: &Context<'_>,
+        input: ClientInput,
+    ) -> crate::Result<AdminClient> {
         let mut pool = ctx.data::<DbPool>().map_err(crate::Error::GraphQL)?.get()?;
         actix_web::web::block(move || -> crate::Result<Client> {
             use crate::schema::clients::dsl::*;
@@ -20,12 +28,13 @@ impl AdminClientMutations {
                 .ok_or(crate::Error::UpsertNotFound)
         })
         .await?
+        .map(|i| i.into())
     }
     pub async fn insert_batch(
         &self,
         ctx: &Context<'_>,
         input: Vec<ClientInput>,
-    ) -> crate::Result<Vec<Client>> {
+    ) -> crate::Result<Vec<AdminClient>> {
         let mut pool = ctx.data::<DbPool>().map_err(crate::Error::GraphQL)?.get()?;
         actix_web::web::block(move || -> crate::Result<Vec<Client>> {
             use crate::schema::clients::dsl::*;
@@ -35,5 +44,6 @@ impl AdminClientMutations {
                 .get_results(&mut pool)?)
         })
         .await?
+        .map(|v| v.into_iter().map(|i| i.into()).collect())
     }
 }

@@ -1,5 +1,8 @@
 use crate::{
-    generate_upserts, graphql::objects::type_chantier::TypeChantierInput,
+    generate_upserts,
+    graphql::{
+        admin::objects::type_chantier::AdminTypeChantier, objects::type_chantier::TypeChantierInput,
+    },
     models::type_chantier::TypeChantier,
 };
 
@@ -21,14 +24,16 @@ impl AdminTypeChantierMutations {
         &self,
         ctx: &Context<'_>,
         input: TypeChantierInput,
-    ) -> crate::Result<TypeChantier> {
-        self.upsert_data(ctx, input).await
+    ) -> crate::Result<AdminTypeChantier> {
+        self.upsert_data(ctx, input).await.map(|i| i.into())
     }
     pub async fn upsert_batch(
         &self,
         ctx: &Context<'_>,
         input: Vec<TypeChantierInput>,
-    ) -> crate::Result<Vec<TypeChantier>> {
-        self.upsert_data_batch(ctx, input).await
+    ) -> crate::Result<Vec<AdminTypeChantier>> {
+        self.upsert_data_batch(ctx, input)
+            .await
+            .map(|v| v.into_iter().map(|i| i.into()).collect())
     }
 }
