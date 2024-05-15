@@ -61,10 +61,7 @@ macro_rules! generate_upserts {
             ctx: &async_graphql::Context<'_>,
             input: $input,
         ) -> $crate::Result<$output> {
-            let mut pool = ctx
-                .data::<$crate::DbPool>()
-                .map_err($crate::Error::GraphQL)?
-                .get()?;
+            let mut pool = $crate::graphql::get_pool(ctx)?;
             actix_web::web::block(move || -> $crate::Result<$output> {
                 use $dsl::*;
                 let to_input: $output = input.into();
@@ -85,10 +82,7 @@ macro_rules! generate_upserts {
             ctx: &async_graphql::Context<'_>,
             input: Vec<$input>,
         ) -> $crate::Result<Vec<$output>> {
-            let mut pool = ctx
-                .data::<$crate::DbPool>()
-                .map_err($crate::Error::GraphQL)?
-                .get()?;
+            let mut pool = $crate::graphql::get_pool(ctx)?;
             actix_web::web::block(move || -> $crate::Result<Vec<$output>> {
                 use $dsl::*;
                 let to_input: Vec<$output> = input.into_iter().map(|i| i.into()).collect();
