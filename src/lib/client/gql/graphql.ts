@@ -182,6 +182,13 @@ export type Unite = {
   idUnite: Scalars['UUID']['output'];
 };
 
+export type ClientListChantierQueryVariables = Exact<{
+  page: OffsetLimit;
+}>;
+
+
+export type ClientListChantierQuery = { __typename?: 'FrontOfficeQuery', chantiers: { __typename?: 'ClientChantierQueries', list: { __typename?: 'ClientChantierResults', offset: number, total: number, limit: number, data: Array<{ __typename?: 'ClientChantier', id: any, dateDebut?: any | null, finition: { __typename?: 'Finition', duree: any, designation: string, prix: any }, typeChantier: { __typename?: 'TypeChantier', nom: string }, devis: { __typename?: 'ClientDevis', prixTotal?: any | null } }> } } };
+
 export type ClientLoginMutationVariables = Exact<{
   telephone: Scalars['String']['input'];
 }>;
@@ -190,4 +197,5 @@ export type ClientLoginMutationVariables = Exact<{
 export type ClientLoginMutation = { __typename?: 'FrontOfficeMutation', login: string };
 
 
+export const ClientListChantierDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"clientListChantier"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OffsetLimit"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"chantiers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"list"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateDebut"}},{"kind":"Field","name":{"kind":"Name","value":"finition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"duree"}},{"kind":"Field","name":{"kind":"Name","value":"designation"}},{"kind":"Field","name":{"kind":"Name","value":"prix"}}]}},{"kind":"Field","name":{"kind":"Name","value":"typeChantier"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nom"}}]}},{"kind":"Field","name":{"kind":"Name","value":"devis"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"prixTotal"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"offset"}},{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}}]}}]}}]}}]} as unknown as DocumentNode<ClientListChantierQuery, ClientListChantierQueryVariables>;
 export const ClientLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"clientLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"telephone"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"telephone"},"value":{"kind":"Variable","name":{"kind":"Name","value":"telephone"}}}]}]}}]} as unknown as DocumentNode<ClientLoginMutation, ClientLoginMutationVariables>;

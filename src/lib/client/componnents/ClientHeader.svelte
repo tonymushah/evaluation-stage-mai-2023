@@ -1,10 +1,20 @@
 <script>
+  import { goto } from "$app/navigation";
   import { route } from "$lib/ROUTES";
 </script>
 
 <div class="top-layout">
   <div>Logo</div>
-  <button formaction={route("logout /client")}>Logout</button>
+  <div class="buttons">
+    <button
+      on:click={() => {
+        goto(route("/client/new"));
+      }}
+    >
+      Nouveau chantier
+    </button>
+    <button formaction={route("logout /client")}>Logout</button>
+  </div>
 </div>
 
 <style lang="scss">
@@ -15,6 +25,10 @@
     flex-direction: row;
     justify-content: space-around;
     padding: 10px 0px;
+    .buttons {
+      display: flex;
+      gap: 5px;
+    }
     button {
       font-family: inherit;
       font-weight: 900;

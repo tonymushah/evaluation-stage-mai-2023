@@ -13,6 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n    query clientListChantier($page: OffsetLimit!) {\n      chantiers {\n        list(pagination: $page) {\n          data {\n            id\n            dateDebut\n            finition {\n              duree\n              designation\n              prix\n            }\n            typeChantier {\n              nom\n            }\n            devis {\n              prixTotal\n            }\n          }\n          offset\n          total\n          limit\n        }\n      }\n    }\n  ": types.ClientListChantierDocument,
     "\n  mutation clientLogin($telephone: String!) {\n    login(telephone: $telephone)\n  }\n": types.ClientLoginDocument,
 };
 
@@ -30,6 +31,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query clientListChantier($page: OffsetLimit!) {\n      chantiers {\n        list(pagination: $page) {\n          data {\n            id\n            dateDebut\n            finition {\n              duree\n              designation\n              prix\n            }\n            typeChantier {\n              nom\n            }\n            devis {\n              prixTotal\n            }\n          }\n          offset\n          total\n          limit\n        }\n      }\n    }\n  "): (typeof documents)["\n    query clientListChantier($page: OffsetLimit!) {\n      chantiers {\n        list(pagination: $page) {\n          data {\n            id\n            dateDebut\n            finition {\n              duree\n              designation\n              prix\n            }\n            typeChantier {\n              nom\n            }\n            devis {\n              prixTotal\n            }\n          }\n          offset\n          total\n          limit\n        }\n      }\n    }\n  "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
