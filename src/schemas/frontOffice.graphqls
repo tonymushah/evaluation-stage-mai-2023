@@ -106,6 +106,7 @@ type TypeChantier {
 	nom: String!
 	description: String!
 	duree: BigDecimal!
+	prixTotal: BigDecimal!
 }
 
 type TypeChantierResults {

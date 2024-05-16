@@ -166,6 +166,7 @@ export type TypeChantier = {
   duree: Scalars['BigDecimal']['output'];
   idTypeChantier: Scalars['UUID']['output'];
   nom: Scalars['String']['output'];
+  prixTotal: Scalars['BigDecimal']['output'];
 };
 
 export type TypeChantierResults = {
