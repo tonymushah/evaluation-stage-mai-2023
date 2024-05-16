@@ -33,8 +33,12 @@
     --primary-l3: #4f7a8f;
     --primary-l4: #3c5d6d;
     --primary-l5: #29404b;
-    --secondary: #dbc379;
+    --secondary: #f5955a;
+    --secondary-l1: #ca906d;
     --secondary-l2: #dbae79;
+    --secondary-l3: #756c66;
+    --secondary-l4: #4b4039;
+    --secondary-l5: #33261e;
     --text-color: #1e2933;
     --background-color: #d2e9f4;
     font-family: "Source Sans Pro", sans-serif;

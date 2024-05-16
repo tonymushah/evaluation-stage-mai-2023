@@ -89,10 +89,23 @@
 </script>
 
 <div class="type-chantier">
-  {#each $typeChantiers as { id, props } (id)}
-    <SelectableTypeChantier {...props}></SelectableTypeChantier>
-  {/each}
-  {#if !isAtEnd}
-    <div class="observer" bind:this={observer} />
-  {/if}
+  <h3>Type de chantier</h3>
+  <div class="choix">
+    {#each $typeChantiers as { id, props } (id)}
+      <SelectableTypeChantier {...props}></SelectableTypeChantier>
+    {/each}
+    {#if !isAtEnd}
+      <div class="observer" bind:this={observer} />
+    {/if}
+  </div>
 </div>
+
+<style lang="scss">
+  .choix {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: scroll;
+    gap: 10px;
+  }
+</style>

@@ -21,8 +21,11 @@
     on:click={() => {
       if (!isSelected) {
         selected.set(id);
+      } else {
+        selected.set(undefined);
       }
     }}
+    class:isSelected
   >
     {#if isSelected}
       Selectionne
@@ -43,19 +46,29 @@
     h4 {
       margin: 1px;
     }
+    padding: 10px;
+    max-width: 15em;
+    min-width: 10em;
   }
   button {
     font-family: inherit;
     font-weight: 900;
-    color: var(--primary-l5);
+    color: var(--primary);
     border: none;
-    background-color: var(--primary);
+    background-color: var(--primary-l5);
     border-radius: 5px;
     font-size: 18px;
     transition: background-color 300ms ease-in-out;
     padding: 1px 10px;
   }
+  .isSelected {
+    color: var(--secondary);
+    background-color: var(--secondary-l5);
+  }
+  .isSelected:hover {
+    background-color: var(--secondary-l4);
+  }
   button:hover {
-    background-color: var(--primary-l1);
+    background-color: var(--primary-l4);
   }
 </style>
