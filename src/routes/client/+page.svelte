@@ -4,6 +4,13 @@
   import { CombinedError, getContextClient } from "@urql/svelte";
   import { onDestroy, onMount, type ComponentProps } from "svelte";
   import { derived, writable } from "svelte/store";
+  import cookie from "js-cookie";
+  import type { PageServerData } from "./$types";
+  import { clientTokenStore } from "$lib/client/stores/clientTokenStore";
+
+  export let data: PageServerData;
+
+  clientTokenStore.set(data.clientToken);
 
   const client = getContextClient();
   const query = graphql(`
@@ -42,22 +49,36 @@
   let offset = 0;
   const limit = 10;
   let total: number | undefined = undefined;
+  $: isAtEnd = total != undefined && offset >= total;
   async function execute(offset: number, limit: number) {
-    if (total == undefined || (total != undefined && offset >= total)) {
+    if (!isAtEnd) {
       const result = await client
-        .query(query, {
-          page: {
-            offset,
-            limit,
+        .query(
+          query,
+          {
+            page: {
+              offset,
+              limit,
+            },
           },
-        })
+          {
+            fetchOptions: () => {
+              const headers = new Headers();
+              const token = $clientTokenStore;
+              if (token) headers.set("authorization", token);
+              return {
+                headers,
+              };
+            },
+          }
+        )
         .toPromise();
       if (result.data) {
         devisStore.update((m) => {
           result.data?.chantiers.list.data.forEach((d) => {
             m.set(d.id, {
               chantier: d.typeChantier.nom,
-              prixTotal: d.devis.prixTotal + d.finition.prix,
+              prixTotal: Number(d.devis.prixTotal) + Number(d.finition.prix),
               etat: "Invalid",
               ETA: 0,
             });
@@ -70,7 +91,7 @@
       }
     }
   }
-  $: isAtEnd = total != undefined && offset >= total;
+
   let observer: HTMLDivElement | undefined = undefined;
   const interObserver = new IntersectionObserver(async () => {
     if (!isAtEnd) {
@@ -112,5 +133,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 5px;
+    gap: 5px;
   }
 </style>

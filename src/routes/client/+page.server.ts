@@ -6,7 +6,9 @@ import { CLIENT_COOKIE_PATH } from "$env/static/private";
 export const load: PageServerLoad = async function ({ cookies }) {
   const clientToken = cookies.get("clientToken");
   if (clientToken) {
-    return {};
+    return {
+      clientToken,
+    };
   } else {
     redirect(303, route("/client/login"));
   }
