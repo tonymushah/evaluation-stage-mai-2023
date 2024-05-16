@@ -1,3 +1,4 @@
+use actix_cors::Cors;
 use actix_web::{
     web::{self},
     App, HttpServer,
@@ -21,7 +22,12 @@ async fn main() -> std::io::Result<()> {
     let adress = env::var("BACKEND_HOST").unwrap();
     println!("Server started at http://{adress}:{port}");
     HttpServer::new(move || {
+        let cors = Cors::default()
+            .allow_any_header()
+            .allow_any_method()
+            .allow_any_origin();
         App::new()
+            .wrap(cors)
             .app_data(web::Data::new(state.clone()))
             .service(front_office)
             .service(front_office_graphiql)
