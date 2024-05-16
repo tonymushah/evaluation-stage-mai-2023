@@ -96,14 +96,13 @@
   });
 </script>
 
-{#each $devis as { id, props } (id)}
-  <div class="devis">
+<div class="devis">
+  {#each $devis as { id, props } (id)}
     <SimpleChatierComponnent {...props} />
-  </div>
-{:else}
-  <div class="nothing">Vous avez aucun travaux en cours...</div>
-{/each}
-
+  {:else}
+    <div class="nothing">Vous avez aucun travaux en cours...</div>
+  {/each}
+</div>
 {#if !isAtEnd}
   <div bind:this={observer} />
 {/if}
