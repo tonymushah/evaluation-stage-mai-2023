@@ -31,6 +31,7 @@ time = { version = "0.3.36", features = [
     "serde-human-readable",
 ] }
 bigdecimal = { version = "0.4.3", features = ["serde"] }
+actix-cors = "0.7.0"
 
 [[bin]]
 name = "dsync"
