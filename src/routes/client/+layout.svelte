@@ -17,11 +17,13 @@
   );
 </script>
 
-{#if !location.pathname.includes("login")}
-  <ClientHeader />
-{/if}
+<div class="top-layout">
+  {#if !location.pathname.includes("login")}
+    <ClientHeader />
+  {/if}
 
-<slot />
+  <slot />
+</div>
 
 <style lang="scss">
   :root {
@@ -34,8 +36,14 @@
     --secondary: #dbc379;
     --secondary-l2: #dbae79;
     --text-color: #1e2933;
+    --background-color: #d2e9f4;
     font-family: "Source Sans Pro", sans-serif;
     color: var(--text-color);
     font-size: 18px;
+  }
+  .top-layout {
+    background-color: var(--background-color);
+    min-width: 90vw;
+    min-height: 99vh;
   }
 </style>
